@@ -19,7 +19,3 @@ if __name__ == "__main__":
     l_1 = Line(field.Point(1, 1), field.Point(3, 6))
     l_2 = Line(field.Point(3, 6), field.Point(7, -1))
     l_3 = Line(field.Point(7, -1), field.Point(1, 1))
-
-    # print(l_1)
-    # print(l_2)
-    # print(l_3)

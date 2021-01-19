@@ -16,8 +16,8 @@ def process_polygon(polygon: dict):
     return {"inner": inner_point, "coords": points}
 
 
-def check_is_inside_polygon(point, polygon: dict):
-
+def check_is_inside_polygon(point, polygon: dict) -> bool:
+    """Проверяет, находится ли точка внутри полигона"""
     lines = list()
     points = polygon["coords"]
 

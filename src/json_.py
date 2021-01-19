@@ -3,12 +3,10 @@ import json
 import field
 import utility
 
-# TODO: Проверить корректность считывания полигона
-
-
 def read_json(filepath: str) -> tuple:
     """
     Считывает json файл и генерирует три значения:\n
+    Индексы выхода:\n
     0 - стартовая точка,\n
     1 - конечная точка,\n
     2 - массив препятствий
@@ -25,6 +23,12 @@ def read_json(filepath: str) -> tuple:
         polygons.append(utility.process_polygon(polygon))
 
     return (start_point, finish_point, polygons)
+
+def save_as_json(content, filepath: str = "./data/result.json"):
+    """Сохраняет содержимое в виде объекта json."""
+    json_serialized = json.dumps(content)
+    with open(filepath, "w") as write_file:
+        write_file.write(json_serialized)
 
 
 if __name__ == "__main__":

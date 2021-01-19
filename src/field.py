@@ -1,3 +1,5 @@
+from itertools import chain
+
 from utility import check_is_inside_polygon
 
 
@@ -64,14 +66,19 @@ class Field:
             return self.points[50 - y][x]
 
     def wave(self):
-        points_queue = [self.get_point(2, 2)]
         finish_point = self.get_point(50, 50)
-        while finish_point.d == -1:
-            for curr_point in points_queue:
-                neighbours = self.find_neighbours(curr_point)
-                for neighbour in neighbours:
-                    neighbour.d += 1
+        points_queue = iter([self.get_point(2, 2)])
 
-    def __repr__(self):
-        for row in self.points:
-            print(row)
+        curr_point = next(points_queue)
+        curr_point.d = 0
+
+        while finish_point.d == -1:
+            neighbours = self.find_neighbours(curr_point)
+            for neighbour in neighbours:
+                neighbour.d = curr_point.d + 1
+            points_queue = chain(points_queue, iter(neighbours))
+            curr_point = next(points_queue)
+
+    # def __repr__(self):
+    #     for row in self.points:
+    #         print(row)

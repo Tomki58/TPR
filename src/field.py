@@ -89,8 +89,13 @@ class Field:
             path.append(suitable_neighbour)
             curr_point = suitable_neighbour
 
-        path_dict = [{"cx": path_point.x, "cy": path_point.y} for path_point in path]
-        return path_dict
+        points_dict = [{"cx": path_point.x, "cy": path_point.y} for path_point in (path[0], path[-1])]
+        lines_dict = list()
+        for idx in range(len(path) - 1):
+            tmp_line = {"x1": path[idx].x, "y1": path[idx].y, "x2": path[idx + 1].x, "y2": path[idx + 1].y}
+            lines_dict.append(tmp_line)
+        
+        return points_dict + lines_dict
 
     def get_point(self, x, y) -> Point:
         if x < 0 or y < 0:
